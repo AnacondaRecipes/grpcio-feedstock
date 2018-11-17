@@ -1,4 +1,4 @@
-{% set version = "1.14.1" %}
+{% set version = "1.16.1" %}
 
 package:
   name: grpcio
@@ -6,14 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/grpcio/grpcio-{{ version }}.tar.gz
-  sha256: 4bf23666e763ca7ff6010465864e9f088f4ac7ecc1e11abd6f85b250e66b2c05
+  sha256: 41bf456665d666d0a07cb1b363626745dc1a98b02395acd666b36c929133a72a
   patches:
     - 0001-macos_use_distutils.patch
-    - 0002-windows_ssl_lib_names.patch
-    - 0003-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
-    - 0004-windows_ssl_lib_names.patch             # [win and openssl != "1.1.1"]
-    - 0005-windows_ssl_lib_names_openssl111.patch  # [win and openssl == "1.1.1"]
-
+    - 0002-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
+    - 0003-windows_ssl_lib_names.patch             # [win and openssl != "1.1.1"]
+    - 0004-windows_ssl_lib_names_openssl111.patch  # [win and openssl == "1.1.1"]
 
 build:
   number: 1
