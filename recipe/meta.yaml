@@ -11,9 +11,12 @@ source:
     - 0001-macos_use_distutils.patch
     - 0002-windows_ssl_lib_names.patch
     - 0003-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
+    - 0004-windows_ssl_lib_names.patch             # [win and openssl != "1.1.1"]
+    - 0005-windows_ssl_lib_names_openssl111.patch  # [win and openssl == "1.1.1"]
+
 
 build:
-  number: 0
+  number: 1
   # protobuf does not support Visual C++ 2008, skip windows py27
   skip: True  # [win and vc<10]
 
