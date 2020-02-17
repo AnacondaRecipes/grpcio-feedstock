@@ -8,11 +8,13 @@ source:
   url: https://pypi.io/packages/source/g/grpcio/grpcio-{{ version }}.tar.gz
   sha256: 41bf456665d666d0a07cb1b363626745dc1a98b02395acd666b36c929133a72a
   patches:
-    - macos_use_distutils.patch
-    - windows_ssl_lib_names.patch
+    - 0001-macos_use_distutils.patch
+    - 0002-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
+    - 0003-windows_ssl_lib_names.patch             # [win and openssl != "1.1.1"]
+    - 0004-windows_ssl_lib_names_openssl111.patch  # [win and openssl == "1.1.1"]
 
 build:
-  number: 0
+  number: 1
   # protobuf does not support Visual C++ 2008, skip windows py27
   skip: True  # [win and vc<10]
 
