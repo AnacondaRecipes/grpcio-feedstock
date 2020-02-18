@@ -10,6 +10,7 @@ source:
   patches:
     - 0001-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
     - 0002-windows-ssl-lib-names.patch
+    - 0001-fix-win-setup-cmds.patch
 
 build:
   number: 0
