@@ -1,4 +1,4 @@
-{% set version = "1.27.2" %}
+{% set version = "1.35.0" %}
 
 package:
   name: grpcio
@@ -6,42 +6,48 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/grpcio/grpcio-{{ version }}.tar.gz
-  sha256: 5ae532b93cf9ce5a2a549b74a2c35e3b690b171ece9358519b3039c7b84c887e
+  sha256: 7bd0ebbb14dde78bf66a1162efd29d3393e4e943952e2f339757aa48a184645c
   patches:
     - 0001-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
     - 0002-windows-ssl-lib-names.patch
-    - 0001-fix-win-setup-cmds.patch
+    - 0001-fix-win-setup.patch
+    - 0001-fix-win-commands.patch
 
 build:
   number: 0
-  # protobuf does not support Visual C++ 2008, skip windows py27
-  skip: True  # [win and vc<10]
+  skip: true  # [python_impl == 'pypy']
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    # - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - abseil-cpp
   host:
     - python
     - pip
+    - setuptools
     - cython
     - six >=1.5.2
-    - futures >=2.2.0   # [py27]
-    - enum34 >=1.0.4    # [py27]
     - zlib
+    - coverage
     - openssl
     - c-ares            # [unix]
+    - pthread-stubs     # [linux]
   run:
     - python
     - setuptools
     - six >=1.5.2
-    - futures >=2.2.0   # [py27]
-    - enum34 >=1.0.4    # [py27]
     - zlib
+    - coverage
     - openssl
     - {{ pin_compatible("c-ares") }}  # [unix]
 
 test:
+  requires:
+    - pip
   imports:
     - grpc
     - grpc._cython
@@ -53,14 +59,20 @@ test:
     - grpc.framework.interfaces
     - grpc.framework.interfaces.base
     - grpc.framework.interfaces.face
+  commands:
+    - python -m pip check
 
 about:
   home: https://grpc.io
-  license: Apache 2.0
-  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  license: Apache-2.0
+  license_file: LICENSE
   license_family: APACHE
   summary: HTTP/2-based RPC framework
+  dev_url: https://pypi.org/project/grpcio/
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - jcrist
+    - bollwyvl
+    - tswast

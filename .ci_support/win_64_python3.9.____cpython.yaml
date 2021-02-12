@@ -1,19 +1,13 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 c_compiler:
-- toolchain_c
+- vs2017
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- toolchain_cxx
-macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+- vs2017
 openssl:
-- 1.0.2
+- 1.1.1
 pin_run_as_build:
   openssl:
     max_pin: x.x.x
@@ -23,6 +17,13 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 python:
-- '3.5'
+- 3.9.* *_cpython
+python_impl:
+- cpython
+target_platform:
+- win-64
+zip_keys:
+- - python
+  - python_impl
 zlib:
 - '1.2'
