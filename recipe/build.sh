@@ -9,6 +9,7 @@ export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL="True"
 export GRPC_PYTHON_BUILD_SYSTEM_CARES="True"
 export GRPC_PYTHON_USE_PREBUILT_GRPC_CORE=""
 export GRPC_PYTHON_BUILD_WITH_CYTHON="True"
+export GRPC_BUILD_PREFIX=${PREFIX}
 
 if [[ "$target_platform" == osx-* ]]; then
     export CC=$(basename "${CC}")
