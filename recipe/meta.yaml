@@ -15,7 +15,7 @@ source:
     - fix_sysroot.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [python_impl == 'pypy']
 
 requirements:
@@ -38,6 +38,7 @@ requirements:
     - pthread-stubs     # [linux]
   run:
     - python
+    - cython
     - setuptools
     - six >=1.5.2
     - zlib
