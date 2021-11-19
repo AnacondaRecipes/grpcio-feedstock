@@ -12,7 +12,7 @@ source:
     - 0002-windows-ssl-lib-names.patch
     #- 0001-fix-win-setup.patch
     - 0001-fix-win-commands.patch
-    - fix_sysroot.patch
+    #- fix_sysroot.patch
 
 build:
   number: 0
