@@ -33,7 +33,6 @@ requirements:
     - openssl
     - pip
     - pthread-stubs     # [linux]
-    - re2               # [unix]
     - setuptools
     - six >=1.10
     - wheel >=0.29
