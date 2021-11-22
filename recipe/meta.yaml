@@ -10,13 +10,14 @@ source:
   patches:
     - 0001-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
     - 0002-windows-ssl-lib-names.patch
-    #- 0001-fix-win-setup.patch
     - 0001-fix-win-commands.patch
-    #- fix_sysroot.patch
 
 build:
   number: 0
-  skip: true  # [python_impl == 'pypy']
+  skip: True  # [python_impl == 'pypy']
+  skip: True  # [py<36]
+  missing_dso_whitelist:
+    - $RPATH/ld64.so.1  # [s390x]
 
 requirements:
   build:
@@ -26,24 +27,24 @@ requirements:
     - patch  # [not win]
   host:
     - python
-    - pip
-    - setuptools
-    - cython
-    - six >=1.5.2
-    - zlib
-    - coverage
-    - openssl
     - c-ares            # [unix]
+    - coverage >=4.0
+    - cython >=0.29.8
+    - openssl
+    - pip
     - pthread-stubs     # [linux]
-  run:
-    - python
-    - cython
+    - re2               # [unix]
     - setuptools
+    - six >=1.10
+    - wheel >=0.29
+    - zlib
+  run:
+    - python >=3.6
+    - openssl
     - six >=1.5.2
     - zlib
-    - coverage
-    - openssl
     - {{ pin_compatible("c-ares") }}  # [unix]
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   requires:
