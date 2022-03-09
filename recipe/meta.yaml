@@ -38,7 +38,7 @@ requirements:
     - wheel >=0.29
     - zlib
   run:
-    - python >=3.6
+    - python
     - openssl
     - six >=1.5.2
     - zlib
@@ -68,7 +68,8 @@ about:
   license_file: LICENSE
   license_family: APACHE
   summary: HTTP/2-based RPC framework
-  dev_url: https://pypi.org/project/grpcio/
+  dev_url: https://github.com/grpc/grpc
+  doc_url: https://grpc.io/docs/languages/python/quickstart/
 
 extra:
   recipe-maintainers:
