@@ -19,8 +19,8 @@ if [[ "$target_platform" == osx-* ]]; then
     export SYSTEM_VERSION_COMPAT=1
 fi
 
-if [[ "$target_platform" == ppc64le ]]; then
-    export LIBS="-lpthread"
+if [[  "$(uname -m)" = "ppc64le" ]]; then
+    export LIBS="$LIBS -lpthread"
 fi
 
 if [[ "$target_platform" == osx-64 ]]; then
