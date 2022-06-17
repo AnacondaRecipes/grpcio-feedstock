@@ -20,7 +20,8 @@ if [[ "$target_platform" == osx-* ]]; then
 fi
 
 if [[  "$(uname -m)" = "ppc64le" ]]; then
-    export LIBS="$LIBS -lpthread"
+    export CFLAGS="$CFLAGS -lpthread"
+    export CXXFLAGS="$CXXFLAGS -lpthread"
 fi
 
 if [[ "$target_platform" == osx-64 ]]; then
