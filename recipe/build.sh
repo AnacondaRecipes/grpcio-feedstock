@@ -19,6 +19,10 @@ if [[ "$target_platform" == osx-* ]]; then
     export SYSTEM_VERSION_COMPAT=1
 fi
 
+if [[ "$target_platform" == ppc64le ]]; then
+    export LIBS="-lpthread"
+fi
+
 if [[ "$target_platform" == osx-64 ]]; then
     export CFLAGS="$CFLAGS -DTARGET_OS_OSX=1 --sysroot /opt/MacOSX10.10.sdk/ -Wno-unknown-warning-option -Wno-unused-command-line-argument -Wno-nullability-completeness"
     export CXXFLAGS="$CXXFLAGS -DTARGET_OS_OSX=1 --sysroot /opt/MacOSX10.10.sdk/ -Wno-unknown-warning-option -Wno-unused-command-line-argument -Wno-nullability-completeness"
