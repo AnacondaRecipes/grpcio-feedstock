@@ -1,4 +1,4 @@
-{% set version = "1.42.0" %}
+{% set version = "1.46.3" %}
 
 package:
   name: grpcio
@@ -6,15 +6,15 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/grpcio/grpcio-{{ version }}.tar.gz
-  sha256: 4a8f2c7490fe3696e0cdd566e2f099fb91b51bc75446125175c55581c2f7bc11
+  sha256: 4b8fd8b1cd553635274b83cd984f0755e6779886eca53c1c71d48215962eb689
   patches:
     - 0001-Monkey-patch-distutils.ccompiler.spawn-to-elide-std-.patch
     - 0002-windows-ssl-lib-names.patch
+    - 0001-fix-win-setup.patch
     - 0001-fix-win-commands.patch
 
 build:
   number: 0
-  # trigger 1
   skip: True  # [python_impl == 'pypy']
   skip: True  # [py<36]
   missing_dso_whitelist:
@@ -51,8 +51,6 @@ test:
     - pip
   imports:
     - grpc
-    - grpc._cython
-    - grpc._cython._cygrpc
     - grpc.beta
     - grpc.framework
     - grpc.framework.common
@@ -69,7 +67,8 @@ about:
   license_file: LICENSE
   license_family: APACHE
   summary: HTTP/2-based RPC framework
-  dev_url: https://pypi.org/project/grpcio/
+  dev_url: https://github.com/grpc/grpc
+  doc_url: https://grpc.io/docs/
 
 extra:
   recipe-maintainers:
