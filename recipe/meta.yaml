@@ -51,8 +51,6 @@ test:
     - pip
   imports:
     - grpc
-    - grpc._cython
-    - grpc._cython._cygrpc
     - grpc.beta
     - grpc.framework
     - grpc.framework.common
